@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flare_flutter/flare_actor.dart';
 
-import '../../reusable_components/button/button.dart';
-import '../home/homePage.dart';
-
 Container getWelcomePage() {
   final String girlOnBoarding = 'assets/girl_on_boarding.flr';
   final String swipeLeft = 'assets/swipe_left.flr';

@@ -46,3 +46,7 @@ flutter:
       fonts:
         - asset: assets/font/Product_Sans_Bold.ttf
         - asset: assets/font/Product_Sans_Regular.ttf
+  
+    - family: Pacifico
+      fonts:
+        - asset: assets/font/Pacifico-Regular.ttf

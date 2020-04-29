@@ -3,6 +3,7 @@ import 'package:flare_flutter/flare_actor.dart';
 
 import '../../reusable_components/button/button.dart';
 import '../home/homePage.dart';
+import '../login/login.dart';
 
 Container getShareWithFriendPage() {
   final String showItToYourFriends = 'assets/show_it_to_your_friends.flr';
@@ -71,13 +72,9 @@ Container getShareWithFriendPage() {
 
               //* button of let's finish
               Container(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
                 width: double.infinity,
                 margin: EdgeInsets.symmetric(vertical: 10),
-                child: Button(navigateTo: HomePage(), text: 'Finish'),
+                child: Button(navigateTo: LoginPage(), text: 'Finish'),
               ),
             ],
           ),
