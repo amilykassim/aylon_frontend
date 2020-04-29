@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flare_flutter/flare_actor.dart';
 
-import '../../reusable_components/button/button.dart';
-import '../home/homePage.dart';
+import '../../utils/colors/colors.dart';
 
 Container getWelcomePage() {
   final String girlOnBoarding = 'assets/girl_on_boarding.flr';
@@ -12,19 +11,19 @@ Container getWelcomePage() {
       fontSize: 20.0,
       color: Colors.black,
       fontWeight: FontWeight.bold,
-      fontFamily: "Product Sans");
+      fontFamily: productSans);
 
   const TextStyle boldStyle = TextStyle(
     fontSize: 37.0,
     color: Colors.black,
-    fontFamily: "Product Sans",
+    fontFamily: productSans,
     fontWeight: FontWeight.bold,
   );
 
   const TextStyle descriptionGreyStyle = TextStyle(
     color: Colors.grey,
     fontSize: 20.0,
-    fontFamily: "Product Sans",
+    fontFamily: productSans,
   );
 
   return Container(

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flare_flutter/flare_actor.dart';
 
 import '../../reusable_components/button/button.dart';
-import '../home/homePage.dart';
+import '../../utils/colors/colors.dart';
+import '../login/login.dart';
 
 Container getShareWithFriendPage() {
   final String showItToYourFriends = 'assets/show_it_to_your_friends.flr';
@@ -11,19 +12,19 @@ Container getShareWithFriendPage() {
       fontSize: 20.0,
       color: Colors.black,
       fontWeight: FontWeight.bold,
-      fontFamily: "Product Sans");
+      fontFamily: productSans);
 
   const TextStyle boldStyle = TextStyle(
     fontSize: 37.0,
     color: Colors.black,
-    fontFamily: "Product Sans",
+    fontFamily: productSans,
     fontWeight: FontWeight.bold,
   );
 
   const TextStyle descriptionGreyStyle = TextStyle(
     color: Colors.grey,
     fontSize: 20.0,
-    fontFamily: "Product Sans",
+    fontFamily: productSans,
   );
 
   return Container(
@@ -62,7 +63,7 @@ Container getShareWithFriendPage() {
                 height: 10.0,
               ),
               Text(
-                "Now let's create your account now",
+                'Let\'s have fun!',
                 style: descriptionGreyStyle,
               ),
               SizedBox(
@@ -71,13 +72,9 @@ Container getShareWithFriendPage() {
 
               //* button of let's finish
               Container(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
                 width: double.infinity,
                 margin: EdgeInsets.symmetric(vertical: 10),
-                child: Button(navigateTo: HomePage(), text: 'Finish'),
+                child: Button(navigateTo: LoginPage(), text: 'Start Now'),
               ),
             ],
           ),
