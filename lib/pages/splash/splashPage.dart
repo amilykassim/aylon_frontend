@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flare_splash_screen/flare_splash_screen.dart';
 
 import '../home/homePage.dart';
+import '../introduction/introductionPage.dart';
 
 class SplashPage extends StatelessWidget {
   final String aylonLogo = 'assets/aylon_logo.flr';
@@ -18,7 +19,7 @@ class SplashPage extends StatelessWidget {
             child: Container(
               child: SplashScreen.navigate(
                 name: aylonLogo,
-                next: (context) => HomePage(),
+                next: (context) => IntroductionPage(),
                 until: () => Future.delayed(Duration(seconds: 1)),
                 startAnimation: 'loading',
               ),

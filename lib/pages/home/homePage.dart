@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../reusable_components/button/button.dart';
+import '../introduction/introductionPage.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -14,7 +17,10 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Container(
         child: Center(
-          child: Text('Welcome to Aylon Page'),
+          child: Button(
+            text: 'Go back',
+            navigateTo: IntroductionPage(),
+          ),
         ),
       ),
     );
