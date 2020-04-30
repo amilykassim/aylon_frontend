@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pages/interests/interestPage.dart';
 import 'pages/login/login.dart';
 import 'pages/splash/splashPage.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: SplashPage  (),
     );
   }
 }

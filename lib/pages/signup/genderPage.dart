@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../reusable_components/appbar/appbar.dart';
 import '../../utils/colors/colors.dart';
 import '../home/homePage.dart';
+import '../interests/interestPage.dart';
 import 'helper.dart';
 
 class GenderPage extends StatefulWidget {
@@ -22,7 +23,7 @@ class _GenderPageState extends State<GenderPage> {
         ),
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomePage()));
+              context, MaterialPageRoute(builder: (context) => InterestPage()));
         },
         color: parentColor,
         textColor: Colors.white,
