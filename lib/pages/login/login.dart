@@ -4,6 +4,7 @@ import '../../reusable_components/button/button.dart';
 import '../../reusable_components/input/input.dart';
 import '../../utils/colors/colors.dart';
 import '../home/homePage.dart';
+import '../signup/phonePage.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -36,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
                       'AYlon',
                       style: TextStyle(
                           fontSize: 50,
-                          color: airbnbColor,
+                          color: parentColor,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Pacifico'),
                     ),
@@ -72,9 +73,19 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text('Don\'t have an Account? '),
-                        Text(
-                          'Sign up',
-                          style: TextStyle(color: parentColor),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PhonePage(),
+                              ),
+                            );
+                          },
+                          child: new Text(
+                            "Sign up",
+                            style: TextStyle(color: childColor),
+                          ),
                         ),
                       ],
                     ),

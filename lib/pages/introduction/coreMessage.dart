@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flare_flutter/flare_actor.dart';
+import '../../utils/colors/colors.dart';
 
 Container getCoreValueMessagePage() {
   final String chatAnimation = 'assets/chat_animation.flr';
@@ -7,20 +8,20 @@ Container getCoreValueMessagePage() {
   const TextStyle boldStyleWhite = TextStyle(
     fontSize: 37.0,
     color: Colors.white,
-    fontFamily: "Product Sans",
+    fontFamily: productSans,
     fontWeight: FontWeight.bold,
   );
 
   const TextStyle descriptionGreyStyle = TextStyle(
     color: Colors.grey,
     fontSize: 20.0,
-    fontFamily: "Product Sans",
+    fontFamily: productSans,
   );
 
   const TextStyle descriptionWhiteStyle = TextStyle(
     color: Colors.white,
     fontSize: 20.0,
-    fontFamily: "Product Sans",
+    fontFamily: productSans,
   );
 
   return Container(

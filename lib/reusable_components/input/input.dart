@@ -1,51 +1,5 @@
 import 'package:flutter/material.dart';
-
 import '../../utils/colors/colors.dart';
-
-// class Input extends StatelessWidget {
-//   final String label;
-//   final TextInputType inputType;
-//   final IconData icon;
-
-//   Input({this.label, this.inputType, this.icon});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       height: 50,
-//       margin: EdgeInsets.all(16),
-//       child: TextFormField(
-//         keyboardType: inputType,
-//         obscureText: label.toLowerCase() == 'password' ? true : false,
-//         decoration: InputDecoration(
-//           labelText: label,
-//           prefixIcon: Icon(
-//             icon,
-//             color: Colors.grey.shade400,
-//             size: 20,
-//           ),
-//           suffixIcon: label.toLowerCase() == 'password' ? Icon(
-//             Icons.visibility_off,
-//             color: Colors.grey.shade400,
-//             size: 20,
-//           ) : null,
-//           border: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(5.0),
-//           ),
-//         ),
-
-//         //! Remember to implement the validation
-//         validator: (val) {
-//           if (val.length == 0) {
-//             return "$label is required";
-//           } else {
-//             return null;
-//           }
-//         },
-//       ),
-//     );
-//   }
-// }
 
 class Input extends StatefulWidget {
   final String label;
@@ -86,6 +40,7 @@ class _InputState extends State<Input> {
       height: 50,
       margin: EdgeInsets.all(16),
       child: TextFormField(
+        autofocus: false,
         keyboardType: widget.inputType,
         obscureText: widget.label.toLowerCase() == 'password'
             ? _isPasswordHidden
@@ -106,7 +61,7 @@ class _InputState extends State<Input> {
           ),
         ),
 
-        //! Remember to implement the validation
+        // TODO: VALIDATE THE INPUTS
         validator: (val) {
           if (val.length == 0) {
             return "${widget.label} is required";
