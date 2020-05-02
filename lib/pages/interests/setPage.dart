@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flare_splash_screen/flare_splash_screen.dart';
 import '../../utils/colors/colors.dart';
-import '../home/homePage.dart';
+import '../home/startPage.dart';
 
 class SetPage extends StatelessWidget {
   final String aylonLogo = 'assets/done_check.flr';
@@ -21,7 +21,7 @@ class SetPage extends StatelessWidget {
 
   Widget _buildLightText() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 16),
+      margin: EdgeInsets.only(top: 16),
       child: Text(
         'Now you have, \nA 1000 shops in your hand',
         style: TextStyle(
@@ -39,7 +39,7 @@ class SetPage extends StatelessWidget {
         Container(), //* THIS IS AN INVISIBLE PARENT THAT HELPS YOU LAYOUT YOUR BELOW WIDGETS
         Container(
           // color: Colors.blue,
-          margin: EdgeInsets.all(16),
+          margin: EdgeInsets.only(top: 16, left: 16, right: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -57,33 +57,23 @@ class SetPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        //***** SCROLL VIEW */
         child: Container(
-          child: Container(
-            color: Colors.white,
-            child: Column(
-              children: <Widget>[
-                _buildUpperLayout(),
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    child: SplashScreen.navigate(
-                      name: aylonLogo,
-                      next: (context) => HomePage(),
-                      until: () => Future.delayed(Duration(seconds: 8)),
-                      startAnimation: 'Animations',
-                    ),
+          color: Colors.white,
+          child: Column(
+            children: <Widget>[
+              _buildUpperLayout(),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  child: SplashScreen.navigate(
+                    name: aylonLogo,
+                    next: (context) => StartPage(),
+                    until: () => Future.delayed(Duration(seconds: 5)),
+                    startAnimation: 'Animations',
                   ),
                 ),
-                // Container(
-                //   margin: EdgeInsets.symmetric(vertical: 16),
-                //   child: Text(
-                //     'A 1000 Shops in your hand',
-                //     style: TextStyle(fontSize: 16),
-                //   ),
-                // ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

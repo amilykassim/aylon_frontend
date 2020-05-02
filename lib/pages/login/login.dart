@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
                       'AYlon',
                       style: TextStyle(
                           fontSize: 50,
-                          color: parentColor,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Pacifico'),
                     ),
