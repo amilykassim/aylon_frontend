@@ -5,8 +5,9 @@ import '../../utils/colors/colors.dart';
 class Button extends StatelessWidget {
   final Widget navigateTo;
   final String text;
+  final Color color;
 
-  Button({this.navigateTo, this.text});
+  Button({this.navigateTo, this.text, this.color = parentColor});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class Button extends StatelessWidget {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => navigateTo));
         },
-        color: parentColor,
+        color: this.color,
         textColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(7),

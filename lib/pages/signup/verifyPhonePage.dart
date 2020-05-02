@@ -14,7 +14,7 @@ class _VerifyPhonePageState extends State<VerifyPhonePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: setAppBar(context: context),
+      appBar: setAppBar(context: context, title: 'Sign up'),
       body: Container(
         width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.only(left: 16, right: 16),
