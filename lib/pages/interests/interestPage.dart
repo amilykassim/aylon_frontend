@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../utils/colors/colors.dart';
 import 'griditem.dart';
+import 'setPage.dart';
 
 class InterestPage extends StatefulWidget {
   @override
@@ -53,6 +54,8 @@ class _InterestPageState extends State<InterestPage> {
           onPressed: () {
             for (int i = 0; i < selectedList.length; i++) {
               print('this is are the items ${selectedList[i].rank}');
+              Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SetPage()));
             }
           },
         ),
