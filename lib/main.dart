@@ -1,10 +1,12 @@
+import 'package:aylon_frontend/pages/splash/splashPage.dart';
 import 'package:flutter/material.dart';
-import 'pages/Likes/likePage.dart';
-import 'pages/Likes/singleCategoryViewLIkePage.dart';
-import 'pages/home/homePage.dart';
+
 import 'pages/home/startPage.dart';
 import 'pages/home/test.dart';
-import 'pages/splash/splashPage.dart';
+import 'pages/setting/changeSettingPage.dart';
+import 'pages/setting/settingPage.dart';
+import 'pages/shop/shopPage.dart';
+import 'pages/single_post/singlePost.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SplashPage(),
+      home: SplashPage()
     );
   }
 }

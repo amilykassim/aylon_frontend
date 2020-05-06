@@ -1,8 +1,8 @@
+import 'package:aylon_frontend/pages/shop/shopPage.dart';
 import 'package:flutter/material.dart';
 
 import '../../reusable_components/appbar/appbar.dart';
 import '../../utils/colors/colors.dart';
-import '../home/homePage.dart';
 import '../home/post.dart';
 
 class DiscoverPage extends StatefulWidget {
@@ -68,7 +68,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: setAppBar(title: 'Aylon', isHomePage: true),
+      appBar: setAppBar(title: 'Aylon', isHomePage: true, context: context),
       body: SafeArea(child: _buildBodyLayout(context, posts)),
       // bottomNavigationBar: _buildBottonNavigationBar(),
     );
@@ -183,12 +183,18 @@ class _DiscoverPageState extends State<DiscoverPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            username,
-            style: TextStyle(
-                fontFamily: productSans,
-                fontWeight: FontWeight.bold,
-                fontSize: 16),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => ShopPage()));
+            },
+            child: Text(
+              username,
+              style: TextStyle(
+                  fontFamily: productSans,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16),
+            ),
           ),
           SizedBox(
             height: 3,

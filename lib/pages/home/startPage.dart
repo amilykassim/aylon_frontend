@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../../reusable_components/appbar/appbar.dart';
 import '../Likes/likePage.dart';
 import '../discover/discoverPage.dart';
 import 'homePage.dart';

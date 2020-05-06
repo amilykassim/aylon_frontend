@@ -3,6 +3,7 @@ import '../../reusable_components/appbar/appbar.dart';
 import '../../utils/colors/colors.dart';
 import '../discover/discoverPage.dart';
 import '../interests/interestPage.dart';
+import '../single_post/singlePost.dart';
 import 'post.dart';
 
 class HomePage extends StatefulWidget {
@@ -46,187 +47,6 @@ class _HomePageState extends State<HomePage> {
         caption: "Consequatur nihil aliquid omnis consequatur."),
   ];
 
-  Widget _buildListView() {
-    return Container(
-      child: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(
-          children: <Widget>[
-            // posts
-            Container(
-              width: MediaQuery.of(context).size.width,
-              child: ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: posts.length,
-                itemBuilder: (ctx, i) {
-                  return Container(
-                    color: Colors.white,
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 10,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(40),
-                                    child: Image(
-                                      image: NetworkImage(posts[i].userImage),
-                                      width: 40,
-                                      height: 40,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(posts[i].username),
-                                ],
-                              ),
-                              IconButton(
-                                icon: Icon(Icons.phone_missed),
-                                onPressed: () {},
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        Image.asset('assets/Tarzan.jpg'),
-
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(Icons.phone),
-                                ),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(Icons.chat),
-                                ),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(Icons.send),
-                                ),
-                              ],
-                            ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.monetization_on),
-                            ),
-                          ],
-                        ),
-
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          margin: EdgeInsets.symmetric(
-                            horizontal: 14,
-                          ),
-                          child: RichText(
-                            softWrap: true,
-                            overflow: TextOverflow.visible,
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: "Liked By ",
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                TextSpan(
-                                  text: "Sigmund,",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                ),
-                                TextSpan(
-                                  text: " Yessenia,",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                ),
-                                TextSpan(
-                                  text: " Dayana",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                ),
-                                TextSpan(
-                                  text: " and",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: " 1263 others",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-
-                        // caption
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          margin: EdgeInsets.symmetric(
-                            horizontal: 14,
-                            vertical: 5,
-                          ),
-                          child: RichText(
-                            softWrap: true,
-                            overflow: TextOverflow.visible,
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: posts[i].username,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                ),
-                                TextSpan(
-                                  text: " ${posts[i].caption}",
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-
-                        // post date
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                            horizontal: 14,
-                          ),
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            "Febuary 2020",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _buildGridView() {
     return Container(
       child: GridView.builder(
@@ -239,43 +59,28 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (context, index) {
           return ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Container(
-              child: Image.asset(itemList[index].imageUrl),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SinglePostPage(
+                      shopName: 'Kabash shop',
+                      shopOwner: 'katepyt',
+                      shopProfileImage:
+                          'https://s3.amazonaws.com/uifaces/faces/twitter/felipecsl/128.jpg',
+                      postImage: itemList[index].imageUrl,
+                    ),
+                  ),
+                );
+              },
+              child: Container(
+                child: Image.asset(itemList[index].imageUrl),
+              ),
             ),
           );
         },
       ),
-    );
-  }
-
-  Widget _buildBottonNavigationBar() {
-    return BottomNavigationBar(
-      currentIndex: currentPage,
-      onTap: (i) {
-        setState(() {
-          currentPage = i;
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => DiscoverPage()));
-        });
-      },
-      type: BottomNavigationBarType.fixed,
-      showSelectedLabels: true,
-      showUnselectedLabels: true,
-      selectedItemColor: Colors.black,
-      items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          title: Text("Aylon"),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.explore),
-          title: Text("Discover"),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.favorite_border),
-          title: Text("Likes"),
-        ),
-      ],
     );
   }
 
@@ -320,7 +125,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: setAppBar(title: 'Aylon', isHomePage: true),
+      appBar: setAppBar(title: 'Aylon', isHomePage: true, context: context),
       body: SafeArea(
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
