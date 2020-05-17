@@ -12,6 +12,7 @@ class SinglePostPage extends StatefulWidget {
   final String shopOwner;
   final String shopProfileImage;
   final String postImage;
+  final List shopImages;
 
   SinglePostPage({
     Key key,
@@ -19,6 +20,7 @@ class SinglePostPage extends StatefulWidget {
     @required this.shopOwner,
     @required this.shopProfileImage,
     @required this.postImage,
+    this.shopImages,
   }) : super(key: key);
 
   @override
@@ -26,7 +28,7 @@ class SinglePostPage extends StatefulWidget {
 }
 
 class _SinglePostPageState extends State<SinglePostPage> {
-  List<Item> itemList = [
+  List<Item> _itemList = [
     Item("assets/new_air.jpg", 1),
     Item("assets/black_white_shirt.jpg", 2),
     Item("assets/black_yello_shirt.jpg", 3),
@@ -73,7 +75,10 @@ class _SinglePostPageState extends State<SinglePostPage> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50.0),
-        child: setAppBar(title: 'Discover', context: context, elevation: 1),
+        child: setAppBar(
+            title: (widget.shopImages == null) ? 'Discover' : widget.shopName,
+            context: context,
+            elevation: 1),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -82,38 +87,64 @@ class _SinglePostPageState extends State<SinglePostPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                _buildPostImage(),
-                _buildIconsLayout(context),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'New Air Jordan on the market right now, if you love it please feel free to call me, I\'ll be happy to help you',
-                        style: TextStyle(fontSize: 14, fontFamily: productSans),
+                (widget.shopImages != null)
+                    ? _buildSinglePostListView()
+                    : Column(
+                        children: <Widget>[
+                          _buildSinglePostLayout(image: widget.postImage),
+                          _buildUpperTitle(
+                              title: 'Similar Products', marginLeft: 20),
+                          _buildGridView(context: context, images: _itemList)
+                        ],
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Room no: 37, 5th floor Chic building',
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontFamily: productSans,
-                            color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ),
-                _buildUpperTitle(
-                    title: 'Similar Products', marginLeft: 20, marginTop: 16),
-                _buildGridView(context: context, images: itemList)
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildSinglePostListView() {
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: BouncingScrollPhysics(),
+      itemCount: widget.shopImages.length,
+      itemBuilder: (ctx, i) {
+        return _buildSinglePostLayout(image: widget.shopImages[i].imageUrl);
+      },
+    );
+  }
+
+  Widget _buildSinglePostLayout({@required String image}) {
+    return Column(
+      children: <Widget>[
+        _buildPostImage(image: image),
+        _buildIconsLayout(),
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                'New Air Jordan on the market right now, if you love it please feel free to call me, I\'ll be happy to help you',
+                style: TextStyle(fontSize: 14, fontFamily: productSans),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Room no: 37, 5th floor Chic building',
+                style: TextStyle(
+                    fontSize: 12, fontFamily: productSans, color: Colors.grey),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -144,14 +175,14 @@ class _SinglePostPageState extends State<SinglePostPage> {
     );
   }
 
-  Widget _buildPostImage() {
+  Widget _buildPostImage({@required String image}) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      child: Image.asset(widget.postImage),
+      child: Image.asset(image),
     );
   }
 
-  Widget _buildIconsLayout(context) {
+  Widget _buildIconsLayout() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: Row(
@@ -209,12 +240,9 @@ class _SinglePostPageState extends State<SinglePostPage> {
     );
   }
 
-  Widget _buildUpperTitle(
-      {@required String title,
-      double marginTop = 10.0,
-      double marginLeft = 10.0}) {
+  Widget _buildUpperTitle({@required String title, double marginLeft = 10.0}) {
     return Container(
-      margin: EdgeInsets.only(top: marginTop, left: marginLeft, right: 5),
+      margin: EdgeInsets.only(left: marginLeft, right: 5),
       child: Align(
         alignment: Alignment.topLeft,
         child: Text(

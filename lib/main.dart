@@ -1,6 +1,5 @@
 import 'package:aylon_frontend/pages/splash/splashPage.dart';
 import 'package:flutter/material.dart';
-
 import 'pages/home/startPage.dart';
 import 'pages/home/test.dart';
 import 'pages/setting/changeSettingPage.dart';
