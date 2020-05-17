@@ -43,6 +43,7 @@ class _ShopPageState extends State<ShopPage> {
             borderRadius: BorderRadius.circular(10),
             child: InkWell(
               onTap: () {
+                // _getRemainingImages(startingIndex: index);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -52,6 +53,7 @@ class _ShopPageState extends State<ShopPage> {
                       shopProfileImage:
                           'https://s3.amazonaws.com/uifaces/faces/twitter/felipecsl/128.jpg',
                       postImage: images[index].imageUrl,
+                      shopImages: _getRemainingImages(startingIndex: index),
                     ),
                   ),
                 );
@@ -64,6 +66,16 @@ class _ShopPageState extends State<ShopPage> {
         },
       ),
     );
+  }
+
+  List<Item> _getRemainingImages({int startingIndex}) {
+    List<Item> remainingImages = [];
+
+    for (int i = startingIndex; i < images.length; i++) {
+      remainingImages.add(images[i]);
+    }
+    print('>>> THE REMAINING IMAGES ARE : ${remainingImages}');
+    return remainingImages;
   }
 
   @override
@@ -81,9 +93,7 @@ class _ShopPageState extends State<ShopPage> {
               _buildShopProfile(),
               Divider(),
 
-              (images.length < 1)
-                  ? _buildNoSavedImagesLayout()
-                  : _buildGridView(),
+              (images.length < 1) ? _buildNoPostsyet() : _buildGridView(),
 
               //* Grid images
             ],
@@ -93,7 +103,7 @@ class _ShopPageState extends State<ShopPage> {
     );
   }
 
-  Widget _buildNoSavedImagesLayout() {
+  Widget _buildNoPostsyet() {
     return Container(
       margin: EdgeInsets.all(30),
       child: Column(
