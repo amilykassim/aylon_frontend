@@ -5,13 +5,15 @@ import '../discover/discoverPage.dart';
 import '../interests/interestPage.dart';
 import '../single_post/singlePost.dart';
 import 'post.dart';
+import 'package:flutter/cupertino.dart';
 
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin<HomePage> {
   int currentPage = 0;
 
   List<Item> itemList = [
@@ -27,7 +29,8 @@ class _HomePageState extends State<HomePage> {
     Item("assets/three_color_tshirt.jpeg", 6),
     Item("assets/white_jacket.jpg", 7),
     Item("assets/white_tshirt.jpg", 7),
-    Item("assets/new_air.jpg", 7),
+    Item("assets/Tarzan.jpg", 7),
+    // Item("assets/new_air.jpg", 7),
   ];
 
   List<Post> posts = [
@@ -65,6 +68,7 @@ class _HomePageState extends State<HomePage> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => SinglePostPage(
+                      heroTag: itemList[index].imageUrl,
                       shopName: 'Kabash shop',
                       shopOwner: 'katepyt',
                       shopProfileImage:
@@ -75,7 +79,9 @@ class _HomePageState extends State<HomePage> {
                 );
               },
               child: Container(
-                child: Image.asset(itemList[index].imageUrl),
+                child: Hero(
+                    tag: itemList[index].imageUrl,
+                    child: Image.asset(itemList[index].imageUrl)),
               ),
             ),
           );
@@ -121,11 +127,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     Widget gridPage = _buildGridView();
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: setAppBar(title: 'Aylon', isHomePage: true, context: context),
+      // appBar: setAppBar(title: 'Aylon', isHomePage: true, context: context),
       body: SafeArea(
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
@@ -141,4 +148,7 @@ class _HomePageState extends State<HomePage> {
       // bottomNavigationBar: _buildBottonNavigationBar(),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

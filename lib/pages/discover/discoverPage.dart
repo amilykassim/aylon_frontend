@@ -10,7 +10,8 @@ class DiscoverPage extends StatefulWidget {
   _DiscoverPageState createState() => _DiscoverPageState();
 }
 
-class _DiscoverPageState extends State<DiscoverPage> {
+class _DiscoverPageState extends State<DiscoverPage>
+    with AutomaticKeepAliveClientMixin<DiscoverPage> {
   int currentPage = 0;
   final List<Post> posts = [
     Post(
@@ -66,9 +67,10 @@ class _DiscoverPageState extends State<DiscoverPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: setAppBar(title: 'Aylon', isHomePage: true, context: context),
+      // appBar: setAppBar(title: 'Aylon', isHomePage: true, context: context),
       body: SafeArea(child: _buildBodyLayout(context, posts)),
       // bottomNavigationBar: _buildBottonNavigationBar(),
     );
@@ -154,16 +156,16 @@ class _DiscoverPageState extends State<DiscoverPage> {
       children: <Widget>[
         Row(
           children: <Widget>[
-            //* SHOP PROFILE IMAGE
-            ClipRRect(
-              borderRadius: BorderRadius.circular(40),
-              child: Image(
-                image: NetworkImage(profileImage),
-                width: 50,
-                height: 50,
-                fit: BoxFit.cover,
-              ),
-            ),
+            //* SHOP PROFILE IMAGE TODO: UNCOMMENT SHOP PROFILE IMAGE AND FIX THE ERROR OF LOADING IMAGES
+            // ClipRRect(
+            //   borderRadius: BorderRadius.circular(40),
+            //   child: Image(
+            //     image: NetworkImage(profileImage),
+            //     width: 50,
+            //     height: 50,
+            //     fit: BoxFit.cover,
+            //   ),
+            // ),
             SizedBox(
               width: 10,
             ),
@@ -266,4 +268,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

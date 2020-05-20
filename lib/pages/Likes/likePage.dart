@@ -12,7 +12,8 @@ class LikePage extends StatefulWidget {
   _LikePageState createState() => _LikePageState();
 }
 
-class _LikePageState extends State<LikePage> {
+class _LikePageState extends State<LikePage>
+    with AutomaticKeepAliveClientMixin<LikePage> {
   int currentPage = 0;
   int imagesWeWantToShow = 4;
 
@@ -68,28 +69,30 @@ class _LikePageState extends State<LikePage> {
         caption: "Consequatur nihil aliquid omnis consequatur."),
   ];
 
-  //* TESTING IMAGES
-  final List<String> images = [
-    'assets/new_air.jpg',
-    'assets/black_white_shirt.jpg',
-    'assets/black_yello_shirt.jpg',
-    'assets/blue_jacket.jpg',
-    'assets/mix_color_shirt.jpg',
-    'assets/t_shirt_grey.jpg',
-    'assets/kitenge_tshirt.jpg',
-  ];
-
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
+    //* TESTING IMAGES
+    final List<String> images = [
+      // 'assets/new_air.jpg',
+      // 'assets/black_white_shirt.jpg',
+      // 'assets/black_yello_shirt.jpg',
+      // 'assets/blue_jacket.jpg',
+      // 'assets/mix_color_shirt.jpg',
+      // 'assets/t_shirt_grey.jpg',
+      // 'assets/kitenge_tshirt.jpg',
+    ];
+
     imagesWeWantToShow = 3;
     Map<String, Object> returnedImages = imagesToShow(images);
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: returnedImages['noImages'] == true
-          ? null
-          : setAppBar(
-              title: 'Liked Products', hideBackArrowIcon: true, elevation: 1),
+      // appBar: returnedImages['noImages'] == true
+      //     ? null
+      //     : setAppBar(
+      //         title: 'Liked Products', hideBackArrowIcon: true, elevation: 1),
       body: SafeArea(
         child: _buildBodyLayout(
             context: context, posts: posts, images: returnedImages),
@@ -219,7 +222,9 @@ class _LikePageState extends State<LikePage> {
   }
 
   Widget _buildGridView(
-      {@required BuildContext context, @required Map<String, Object> images, String title}) {
+      {@required BuildContext context,
+      @required Map<String, Object> images,
+      String title}) {
     return Container(
       width: MediaQuery.of(context).size.width,
       child: GridView.count(
@@ -291,4 +296,7 @@ class _LikePageState extends State<LikePage> {
 
     return noImages;
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

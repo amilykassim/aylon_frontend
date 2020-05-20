@@ -26,7 +26,6 @@ class _ShopPageState extends State<ShopPage> {
     Item("assets/three_color_tshirt.jpeg", 6),
     Item("assets/white_jacket.jpg", 7),
     Item("assets/white_tshirt.jpg", 7),
-    Item("assets/new_air.jpg", 7),
   ];
 
   Widget _buildGridView() {
@@ -48,6 +47,7 @@ class _ShopPageState extends State<ShopPage> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => SinglePostPage(
+                      heroTag: images[index].imageUrl,
                       shopName: 'Kabash shop',
                       shopOwner: 'katepyt',
                       shopProfileImage:
@@ -59,7 +59,9 @@ class _ShopPageState extends State<ShopPage> {
                 );
               },
               child: Container(
-                child: Image.asset(images[index].imageUrl),
+                child: Hero(
+                  tag: images[index].imageUrl,
+                  child: Image.asset(images[index].imageUrl)),
               ),
             ),
           );

@@ -13,6 +13,7 @@ class SinglePostPage extends StatefulWidget {
   final String shopProfileImage;
   final String postImage;
   final List shopImages;
+  final Object heroTag;
 
   SinglePostPage({
     Key key,
@@ -20,6 +21,7 @@ class SinglePostPage extends StatefulWidget {
     @required this.shopOwner,
     @required this.shopProfileImage,
     @required this.postImage,
+    @required this.heroTag,
     this.shopImages,
   }) : super(key: key);
 
@@ -41,7 +43,7 @@ class _SinglePostPageState extends State<SinglePostPage> {
     Item("assets/three_color_tshirt.jpeg", 6),
     Item("assets/white_jacket.jpg", 7),
     Item("assets/white_tshirt.jpg", 7),
-    Item("assets/new_air.jpg", 7),
+    Item("assets/Tarzan.jpg", 7),
   ];
 
   List<Post> posts = [
@@ -178,7 +180,10 @@ class _SinglePostPageState extends State<SinglePostPage> {
   Widget _buildPostImage({@required String image}) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      child: Image.asset(image),
+      child: Hero(
+        tag: image,
+        child: Image.asset(image),
+      ),
     );
   }
 
@@ -192,16 +197,17 @@ class _SinglePostPageState extends State<SinglePostPage> {
             margin: EdgeInsets.symmetric(horizontal: 10),
             child: Row(
               children: <Widget>[
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(40),
-                  child: Image(
-                    image: NetworkImage(
-                        'https://s3.amazonaws.com/uifaces/faces/twitter/felipecsl/128.jpg'),
-                    width: 30,
-                    height: 30,
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                // TODO: UNCOMMENT THE SHOP PROFILE IMAGE AND FIX THE NETWORK IMAGE DISPLAYING ISSUES
+                // ClipRRect(
+                //   borderRadius: BorderRadius.circular(40),
+                //   child: Image(
+                //     image: NetworkImage(
+                //         'https://s3.amazonaws.com/uifaces/faces/twitter/felipecsl/128.jpg'),
+                //     width: 30,
+                //     height: 30,
+                //     fit: BoxFit.cover,
+                //   ),
+                // ),
                 _buildBargainButton(text: 'Bargain', color: Colors.teal),
               ],
             ),
