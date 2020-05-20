@@ -1,3 +1,5 @@
+import 'package:aylon_frontend/pages/single_post/singlePostItem.dart';
+import 'package:aylon_frontend/utils/constants.dart';
 import 'package:flutter/material.dart';
 import '../../reusable_components/appbar/appbar.dart';
 import '../../utils/colors/colors.dart';
@@ -64,19 +66,30 @@ class _HomePageState extends State<HomePage>
             borderRadius: BorderRadius.circular(10),
             child: InkWell(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SinglePostPage(
-                      heroTag: itemList[index].imageUrl,
-                      shopName: 'Kabash shop',
-                      shopOwner: 'katepyt',
-                      shopProfileImage:
-                          'https://s3.amazonaws.com/uifaces/faces/twitter/felipecsl/128.jpg',
-                      postImage: itemList[index].imageUrl,
-                    ),
-                  ),
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => SinglePostPage(
+                //       heroTag: itemList[index].imageUrl,
+                //       shopName: 'Kabash shop',
+                //       shopOwner: 'katepyt',
+                //       shopProfileImage:
+                //           'https://s3.amazonaws.com/uifaces/faces/twitter/felipecsl/128.jpg',
+                //       postImage: itemList[index].imageUrl,
+                //     ),
+                //   ),
+                // );
+
+                Object data = SinglePostItem(
+                  heroTag: itemList[index].imageUrl,
+                  shopName: 'Kabash shop',
+                  shopOwner: 'katepyt',
+                  shopProfileImage:
+                      'https://s3.amazonaws.com/uifaces/faces/twitter/felipecsl/128.jpg',
+                  postImage: itemList[index].imageUrl,
                 );
+
+                Navigator.pushNamed(context, SINGLE_POST_PAGE, arguments: data);
               },
               child: Container(
                 child: Hero(

@@ -1,4 +1,5 @@
 import 'package:aylon_frontend/pages/shop/shopPage.dart';
+import 'package:aylon_frontend/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 import '../../reusable_components/appbar/appbar.dart';
@@ -187,8 +188,9 @@ class _DiscoverPageState extends State<DiscoverPage>
         children: <Widget>[
           InkWell(
             onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => ShopPage()));
+              // Navigator.push(
+              //     context, MaterialPageRoute(builder: (context) => ShopPage()));
+              Navigator.pushNamed(context, SHOP_PAGE);
             },
             child: Text(
               username,

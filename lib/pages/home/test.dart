@@ -303,7 +303,6 @@ class _MainPersistentTabBarState extends State<MainPersistentTabBar> {
             LikePage(),
           ],
         ),
-
         bottomNavigationBar: TabBar(
             tabs: [
               Tab(

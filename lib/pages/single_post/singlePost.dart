@@ -1,3 +1,4 @@
+import 'package:aylon_frontend/pages/single_post/singlePostItem.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -8,21 +9,11 @@ import '../home/post.dart';
 import '../interests/interestPage.dart';
 
 class SinglePostPage extends StatefulWidget {
-  final String shopName;
-  final String shopOwner;
-  final String shopProfileImage;
-  final String postImage;
-  final List shopImages;
-  final Object heroTag;
+  final SinglePostItem data;
 
   SinglePostPage({
     Key key,
-    @required this.shopName,
-    @required this.shopOwner,
-    @required this.shopProfileImage,
-    @required this.postImage,
-    @required this.heroTag,
-    this.shopImages,
+    @required this.data,
   }) : super(key: key);
 
   @override
@@ -78,7 +69,7 @@ class _SinglePostPageState extends State<SinglePostPage> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50.0),
         child: setAppBar(
-            title: (widget.shopImages == null) ? 'Discover' : widget.shopName,
+            title: (widget.data.shopImages == null) ? 'Discover' : widget.data.shopName,
             context: context,
             elevation: 1),
       ),
@@ -89,11 +80,11 @@ class _SinglePostPageState extends State<SinglePostPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                (widget.shopImages != null)
+                (widget.data.shopImages != null)
                     ? _buildSinglePostListView()
                     : Column(
                         children: <Widget>[
-                          _buildSinglePostLayout(image: widget.postImage),
+                          _buildSinglePostLayout(image: widget.data.postImage),
                           _buildUpperTitle(
                               title: 'Similar Products', marginLeft: 20),
                           _buildGridView(context: context, images: _itemList)
@@ -111,9 +102,9 @@ class _SinglePostPageState extends State<SinglePostPage> {
     return ListView.builder(
       shrinkWrap: true,
       physics: BouncingScrollPhysics(),
-      itemCount: widget.shopImages.length,
+      itemCount: widget.data.shopImages.length,
       itemBuilder: (ctx, i) {
-        return _buildSinglePostLayout(image: widget.shopImages[i].imageUrl);
+        return _buildSinglePostLayout(image: widget.data.shopImages[i].imageUrl);
       },
     );
   }

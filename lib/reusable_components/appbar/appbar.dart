@@ -1,4 +1,5 @@
 import 'package:aylon_frontend/pages/setting/settingPage.dart';
+import 'package:aylon_frontend/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
@@ -28,18 +29,17 @@ Widget setAppBar({
       // ),
       actions: <Widget>[
         IconButton(
-          icon: Icon(FontAwesome.user_circle, color: Colors.black),
+          icon: Icon(Icons.person_outline, size: 26, color: Colors.black),
           onPressed: () {
             print('>>>>>>> THE ICON WAS PRESSED');
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SettingPage()));
+
+            Navigator.pushNamed(context, SETTING_PAGE);
           },
         ),
         IconButton(
-          icon: Icon(Icons.notification_important, color: Colors.black),
+          icon: Icon(FontAwesome.bell_o, size: 20, color: Colors.black),
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => LikePage()));
+            Navigator.pushNamed(context, NOTIFICATION_PAGE);
           },
         ),
         IconButton(

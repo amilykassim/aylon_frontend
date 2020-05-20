@@ -1,7 +1,9 @@
+import 'package:aylon_frontend/pages/single_post/singlePostItem.dart';
 import 'package:flutter/material.dart';
 import '../../reusable_components/appbar/appbar.dart';
 import '../../reusable_components/button/button.dart';
 import '../../utils/colors/colors.dart';
+import '../../utils/constants.dart';
 import '../Likes/singleCategoryViewLIkePage.dart';
 import '../home/post.dart';
 import '../interests/interestPage.dart';
@@ -42,26 +44,38 @@ class _ShopPageState extends State<ShopPage> {
             borderRadius: BorderRadius.circular(10),
             child: InkWell(
               onTap: () {
-                // _getRemainingImages(startingIndex: index);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SinglePostPage(
-                      heroTag: images[index].imageUrl,
-                      shopName: 'Kabash shop',
-                      shopOwner: 'katepyt',
-                      shopProfileImage:
-                          'https://s3.amazonaws.com/uifaces/faces/twitter/felipecsl/128.jpg',
-                      postImage: images[index].imageUrl,
-                      shopImages: _getRemainingImages(startingIndex: index),
-                    ),
-                  ),
+                _getRemainingImages(startingIndex: index);
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => SinglePostPage(
+                //       heroTag: images[index].imageUrl,
+                //       shopName: 'Kabash shop',
+                //       shopOwner: 'katepyt',
+                //       shopProfileImage:
+                //           'https://s3.amazonaws.com/uifaces/faces/twitter/felipecsl/128.jpg',
+                //       postImage: images[index].imageUrl,
+                //       shopImages: _getRemainingImages(startingIndex: index),
+                //     ),
+                //   ),
+                // );
+
+                Object data = SinglePostItem(
+                  heroTag: images[index].imageUrl,
+                  shopName: 'Kabash shop',
+                  shopOwner: 'katepyt',
+                  shopProfileImage:
+                      'https://s3.amazonaws.com/uifaces/faces/twitter/felipecsl/128.jpg',
+                  postImage: images[index].imageUrl,
+                  shopImages: _getRemainingImages(startingIndex: index),
                 );
+
+                Navigator.pushNamed(context, SINGLE_POST_PAGE, arguments: data);
               },
               child: Container(
                 child: Hero(
-                  tag: images[index].imageUrl,
-                  child: Image.asset(images[index].imageUrl)),
+                    tag: images[index].imageUrl,
+                    child: Image.asset(images[index].imageUrl)),
               ),
             ),
           );
