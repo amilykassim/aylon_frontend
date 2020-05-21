@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MainPersistentTabBar(),
+      home: StartPage(),
       onGenerateRoute: (RouteSettings settings) {
         final data = settings.arguments;
         switch (settings.name) {
@@ -39,22 +39,11 @@ class MyApp extends StatelessWidget {
                 builder: (_) => ShopPage(), settings: settings);
           case SINGLE_POST_PAGE:
             return CupertinoPageRoute(
-                builder: (_) => SinglePostPage(
-                      data: data
-                    ),
-                settings: settings);
+              builder: (_) => SinglePostPage(data: data),
+              settings: settings,
+            );
 
-
-
-
-
-
-
-
-
-
-                
-        // TODO: ADD A DEFAULT ROUTE IN CASE NOTHING MATCH. IT WILL SUPPRESS THE ABOVE WARNING
+          // TODO: ADD A DEFAULT ROUTE IN CASE NOTHING MATCH. IT WILL SUPPRESS THE ABOVE WARNING
         }
       },
     );

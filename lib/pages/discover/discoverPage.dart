@@ -69,12 +69,7 @@ class _DiscoverPageState extends State<DiscoverPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Scaffold(
-      backgroundColor: Colors.white,
-      // appBar: setAppBar(title: 'Aylon', isHomePage: true, context: context),
-      body: SafeArea(child: _buildBodyLayout(context, posts)),
-      // bottomNavigationBar: _buildBottonNavigationBar(),
-    );
+    return _buildBodyLayout(context, posts);
   }
 
   Widget _buildUpperTitle() {

@@ -275,54 +275,213 @@
 
 //* END: PERSIST UI STATE WHILE NAVIGATING USING BOTTOM NAVIGATION BAR
 
+//* PULL TO REFRESH
+// import 'package:aylon_frontend/pages/Likes/likePage.dart';
+// import 'package:aylon_frontend/pages/discover/discoverPage.dart';
+// import 'package:aylon_frontend/pages/home/homePage.dart';
+// import 'package:aylon_frontend/pages/interests/interestPage.dart';
+// import 'package:aylon_frontend/reusable_components/appbar/appbar.dart';
+// import 'package:flutter/material.dart';
+// import 'package:pull_to_refresh/pull_to_refresh.dart';
+// import 'package:flutter_icons/flutter_icons.dart';
+
+// class RefreshPage extends StatefulWidget {
+//   final Widget page;
+//   RefreshPage({
+//     Key key,
+//     @required this.page,
+//   }) : super(key: key);
+
+//   @override
+//   _RefreshPageState createState() => _RefreshPageState();
+// }
+
+// class _RefreshPageState extends State<RefreshPage> {
+//   bool _enablePullDown = true; // this enable our app to able to pull down
+//   RefreshController _refreshController; // the refresh controller
+//   var _scaffoldKey =
+//       GlobalKey<ScaffoldState>(); // this is our key to the scaffold widget
+
+//   int currentPage = 0;
+
+//   List<Item> itemList = [
+//     Item("assets/new_air.jpg", 1),
+//     Item("assets/black_white_shirt.jpg", 2),
+//     Item("assets/black_yello_shirt.jpg", 3),
+//     Item("assets/blue_jacket.jpg", 4),
+//     Item("assets/jordan.jpg", 5),
+//     Item("assets/kitenge_tshirt.jpg", 5),
+//     Item("assets/mix_color_shirt.jpg", 5),
+//     Item("assets/shark_tshirt.jpg", 6),
+//     Item("assets/t_shirt_grey.jpg", 6),
+//     Item("assets/three_color_tshirt.jpeg", 6),
+//     Item("assets/white_jacket.jpg", 7),
+//     Item("assets/white_tshirt.jpg", 7),
+//     Item("assets/Tarzan.jpg", 7),
+//     // Item("assets/new_air.jpg", 7),
+//   ];
+
+//   @override
+//   void initState() {
+//     _refreshController =
+//         RefreshController(); // we have to use initState because this part of the app have to restart
+//     super.initState();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: Colors.white,
+//       key: _scaffoldKey, // the key we create up there
+// // So inside the body widget we will implement pull to refresh, So first we call
+//       body: SafeArea(
+//         child: SmartRefresher(
+//           physics: BouncingScrollPhysics(),
+//           enablePullDown:
+//               _enablePullDown, // the bool we create, so this gave access to be able to pull the app down
+//           header: WaterDropHeader(
+//             waterDropColor: Colors.teal,
+// // complete: If the refresh is completed show this else failed
+//             complete: Text('Complete',
+//                 style: TextStyle(
+//                     color: Colors.teal,
+//                     fontSize: 18,
+//                     fontWeight: FontWeight
+//                         .bold)), // you can customize this whatever you like
+//             failed: Text('Failed',
+//                 style: TextStyle(color: Colors.red, fontSize: 18)),
+//           ),
+//           controller: _refreshController,
+//           onRefresh:
+//               _onRefresh, // we are going to inplement _onRefresh and _onLoading below our build method
+//           onLoading: _onLoading,
+//           // child: SingleChildScrollView(
+//           //   child: Column(
+//           //     mainAxisAlignment: MainAxisAlignment.start,
+//           //     children: <Widget>[
+//           //       _buildUpperTitle(),
+//           //       _buildGridView(),
+//           //     ],
+//           //   ),
+//           // ), // we are going to create a list of text in this dynamic ii()
+
+//           child: widget.page,
+//         ),
+//       ),
+//     );
+//   }
+
+//   _onLoading() {
+//     _refreshController
+//         .loadComplete(); // after data returned,set the footer state to idle
+//   }
+
+//   _onRefresh() {
+//     setState(() {
+//       RefreshPage(
+//         page: widget.page,
+//       ); // if you want to refresh the whole page you can put the page name or
+//       // txtlist(); // if you only want to refresh the list you can place this, so the two can be inside setState
+//       _refreshController.refreshCompleted();
+
+//       // CustomFunction().showToast(message: 'Internet connection is a problem');
+//     });
+//   }
+
+//   ///* THE TESTING LIST
+//   // txtlist() {
+//   //   return ListView.builder(
+//   //     itemCount: 20,
+//   //     shrinkWrap: true,
+//   //     itemBuilder: (context, index) {
+//   //       return Card(
+//   //         elevation: 10,
+//   //         child: ListTile(
+//   //           dense: true,
+//   //           title: Text('List - Dummy Text',
+//   //               style:
+//   //                   TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+//   //           leading: Text('$index'),
+//   //           subtitle: Text('subtitle'),
+//   //           trailing: IconButton(
+//   //             icon: Icon(Icons.arrow_forward),
+//   //             onPressed: () {
+//   //               // Navigator.push(context,
+//   //               //     MaterialPageRoute(builder: (context) => NextPage()));
+//   //             },
+//   //           ),
+//   //         ),
+//   //       );
+//   //     },
+//   //   );
+//   // }
+
+// //* I DON'T KNOW WHAT IT DOES BUT I'LL TEST IT LATER
+//   // loadingpage() {
+//   //   FutureBuilder(
+//   //     future: txtlist(),
+//   //     builder: (context, load) {
+//   //     switch (load.connectionState) {
+//   //       case ConnectionState.none:
+//   //         return Text('');
+//   //         break;
+//   //       case ConnectionState.waiting:
+//   //         return CircularProgressIndicator();
+//   //         break;
+//   //       case ConnectionState.active:
+//   //         return Text('');
+//   //         break;
+//   //       case ConnectionState.done:
+//   //         return txtlist();
+//   //         break;
+//   //     }
+//   //     return Text('');
+//   //   });
+//   // }
+// }
+
 //* START: TABS
-import 'package:aylon_frontend/pages/Likes/likePage.dart';
 
-import 'package:aylon_frontend/reusable_components/appbar/appbar.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'homePage.dart';
-import '../discover/discoverPage.dart';
+// class MainPersistentTabBar extends StatefulWidget {
+//   @override
+//   _MainPersistentTabBarState createState() => _MainPersistentTabBarState();
+// }
 
-class MainPersistentTabBar extends StatefulWidget {
-  @override
-  _MainPersistentTabBarState createState() => _MainPersistentTabBarState();
-}
-
-class _MainPersistentTabBarState extends State<MainPersistentTabBar> {
-  @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: setAppBar(title: 'Aylon', isHomePage: true, context: context),
-        body: TabBarView(
-          children: [
-            HomePage(),
-            DiscoverPage(),
-            LikePage(),
-          ],
-        ),
-        bottomNavigationBar: TabBar(
-            tabs: [
-              Tab(
-                icon: Icon(Icons.search),
-              ),
-              Tab(
-                icon: Icon(Icons.explore),
-              ),
-              Tab(
-                icon: Icon(FontAwesome.heart_o),
-              ),
-            ],
-            labelColor: Colors.black,
-            unselectedLabelColor: Colors.grey,
-            indicatorSize: TabBarIndicatorSize.label,
-            // indicatorPadding: EdgeInsets.all(5.0),
-            indicatorColor: Colors.transparent),
-      ),
-    );
-  }
-}
+// class _MainPersistentTabBarState extends State<MainPersistentTabBar> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return DefaultTabController(
+//       length: 3,
+//       child: Scaffold(
+//         appBar: setAppBar(title: 'Aylon', isHomePage: true, context: context),
+//         body: TabBarView(
+//           children: [
+//             // HomePage(),
+//             RefreshPage(page: HomePage()),
+//             RefreshPage(page: DiscoverPage()),
+//             RefreshPage(page: LikePage()),
+//           ],
+//         ),
+//         bottomNavigationBar: TabBar(
+//             tabs: [
+//               Tab(
+//                 icon: Icon(Icons.search),
+//               ),
+//               Tab(
+//                 icon: Icon(Icons.explore),
+//               ),
+//               Tab(
+//                 icon: Icon(FontAwesome.heart_o),
+//               ),
+//             ],
+//             labelColor: Colors.black,
+//             unselectedLabelColor: Colors.grey,
+//             indicatorSize: TabBarIndicatorSize.label,
+//             // indicatorPadding: EdgeInsets.all(5.0),
+//             indicatorColor: Colors.transparent),
+//       ),
+//     );
+//   }
+// }
 
 //*  END TABS

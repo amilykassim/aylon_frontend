@@ -141,25 +141,33 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    Widget gridPage = _buildGridView();
-
-    return Scaffold(
-      backgroundColor: Colors.white,
-      // appBar: setAppBar(title: 'Aylon', isHomePage: true, context: context),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              _buildUpperTitle(),
-              gridPage,
-            ],
-          ),
-        ),
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          _buildUpperTitle(),
+          _buildGridView(),
+        ],
       ),
-      // bottomNavigationBar: _buildBottonNavigationBar(),
     );
+
+    // return Scaffold(
+    //   backgroundColor: Colors.white,
+    //   // appBar: setAppBar(title: 'Aylon', isHomePage: true, context: context),
+    //   body: SafeArea(
+    //     child: SingleChildScrollView(
+    //       physics: BouncingScrollPhysics(),
+    //       child: Column(
+    //         mainAxisAlignment: MainAxisAlignment.start,
+    //         children: <Widget>[
+    //           _buildUpperTitle(),
+    //           gridPage,
+    //         ],
+    //       ),
+    //     ),
+    //   ),
+    //   // bottomNavigationBar: _buildBottonNavigationBar(),
+    // );
   }
 
   @override

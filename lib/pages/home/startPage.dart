@@ -1,7 +1,10 @@
+import 'package:aylon_frontend/reusable_components/appbar/appbar.dart';
+import 'package:aylon_frontend/reusable_components/refresh_page/refreshPage.dart';
 import 'package:flutter/material.dart';
 import '../Likes/likePage.dart';
 import '../discover/discoverPage.dart';
 import 'homePage.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class StartPage extends StatefulWidget {
   @override
@@ -9,55 +12,37 @@ class StartPage extends StatefulWidget {
 }
 
 class _StartPageState extends State<StartPage> {
-  int currentPage = 0;
-  List<Widget> pages = [
-    HomePage(),
-    DiscoverPage(),
-    LikePage(),
-  ];
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: pages[currentPage],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentPage,
-        onTap: (i) {
-          setState(() {
-            currentPage = i;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        selectedItemColor: Colors.black,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text("Aylon"),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.explore),
-            title: Text("Discover"),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
-            title: Text("Likes"),
-          ),
-        ],
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: setAppBar(title: 'Aylon', isHomePage: true, context: context),
+        body: TabBarView(
+          children: [
+            RefreshPage(page: HomePage()),
+            RefreshPage(page: DiscoverPage()),
+            RefreshPage(page: LikePage()),
+          ],
+        ),
+        bottomNavigationBar: TabBar(
+            tabs: [
+              Tab(
+                icon: Icon(Icons.search),
+              ),
+              Tab(
+                icon: Icon(Icons.explore),
+              ),
+              Tab(
+                icon: Icon(FontAwesome.heart_o),
+              ),
+            ],
+            labelColor: Colors.black,
+            unselectedLabelColor: Colors.grey,
+            indicatorSize: TabBarIndicatorSize.label,
+            // indicatorPadding: EdgeInsets.all(5.0),
+            indicatorColor: Colors.transparent),
       ),
     );
-  }
-}
-
-class MyBottomNavigationBar extends StatefulWidget {
-  @override
-  _MyBottomNavigationBarState createState() => _MyBottomNavigationBarState();
-}
-
-class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

@@ -21,6 +21,8 @@ dependencies:
   flutter_icons: ^1.0.0+1
   flutter_sticky_header: ^0.4.2
   carousel_slider: ^1.3.0
+  # connectivity: any
+  # fluttertoast: ^2.2.11
 
 dev_dependencies:
   flutter_test:

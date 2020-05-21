@@ -87,23 +87,13 @@ class _LikePageState extends State<LikePage>
     imagesWeWantToShow = 3;
     Map<String, Object> returnedImages = imagesToShow(images);
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      // appBar: returnedImages['noImages'] == true
-      //     ? null
-      //     : setAppBar(
-      //         title: 'Liked Products', hideBackArrowIcon: true, elevation: 1),
-      body: SafeArea(
-        child: _buildBodyLayout(
-            context: context, posts: posts, images: returnedImages),
-      ),
-      // bottomNavigationBar: _buildBottonNavigationBar(),
-    );
+    return _buildBodyLayout(
+        context: context, posts: posts, images: returnedImages);
   }
 
   Widget _buildUpperTitle(
       {@required String title,
-      double marginTop = 10.0,
+      double marginTop = 0,
       double marginLeft = 10.0}) {
     return Container(
       margin: EdgeInsets.only(top: marginTop, left: marginLeft, right: 5),
